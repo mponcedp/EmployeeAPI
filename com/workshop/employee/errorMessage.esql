@@ -11,6 +11,7 @@ CREATE COMPUTE MODULE errorMessage
 		SET OutputRoot.JSON.Data.EstatusProceso='workshop_err_704'; 
 		SET OutputRoot.JSON.Data.IdTransaccion=InputRoot.SOAP.Header.ns:HeaderType.messageUUID; 
 		SET OutputRoot.JSON.Data.Mensaje=InputRoot.SOAP.Body.ns:OutputFault.faultMessage; 
+		SET OutputRoot.JSON.Data.Code='hello'; 
 		
 		ELSE
 			
