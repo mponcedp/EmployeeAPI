@@ -15,6 +15,7 @@ CREATE COMPUTE MODULE outputEmployee
 		SET OutputRoot.JSON.Data.ApellidoMaterno=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.ApellidoMaterno;
 		SET OutputRoot.JSON.Data.FechaNacimiento=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.FechaNacimiento;
 		SET OutputRoot.JSON.Data.Edad=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.Edad;
+		SET OutputRoot.JSON.Data.Mensaje='Prueba Empleado';
 		
 		
 		CREATE FIELD OutputRoot.JSON.Data.Direccion IDENTITY (JSON.Array)Direccion;
