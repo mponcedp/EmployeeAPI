@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:ejmemp="http://www.w3school.org/xsd/ejemploEmpleado/v1/" xmlns:empejm="http://www.3school.org/EmpleadoEjemplo/v1/">
+  <xsd:import namespace="http://www.w3school.org/xsd/ejemploEmpleado/v1/" schemaLocation="EmpleadoEjemplo.xsd"/>
+  <xsd:include schemaLocation="EmpleadoEjemplo_1_InlineSchema1.xsd"/>
+
+<!-- BEGIN Global group petaining to all wsdl:message definitions -->
+<!-- END Global group -->
+
+
+<!-- BEGIN Message Definitions for the wsdl:operations  -->
+<!-- END Message Definitions -->
+
+
+</xsd:schema>

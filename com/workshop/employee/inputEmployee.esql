@@ -1,0 +1,20 @@
+BROKER SCHEMA com.workshop.employee
+PATH com.workshop.common;
+DECLARE nsempl NAMESPACE 'http://www.w3school.org/xsd/ejemploEmpleado/v1/';
+
+
+
+CREATE COMPUTE MODULE inputEmployee
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		 --SET OutputRoot.JSON.Data.testData='hello world';
+		
+		 SET OutputRoot.SOAP.Body.nsempl:InputEmpleado.ID_Empleado = InputLocalEnvironment.REST.Input.Parameters.employeeId;
+		 
+		 SET Environment.Variables.serviceURL=getPolicyProperty('WS_UDP_polPrj','userPolicyExample','serviceEndpoint');
+		 
+		 SET InputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL =	getPolicyProperty('WS_UDP_polPrj','userPolicyExample','serviceEndpoint');
+		 RETURN TRUE;
+	END;
+END MODULE;

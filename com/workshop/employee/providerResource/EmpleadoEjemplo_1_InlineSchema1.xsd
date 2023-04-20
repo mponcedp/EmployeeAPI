@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:ejmemp="http://www.w3school.org/xsd/ejemploEmpleado/v1/" xmlns:empejm="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:import namespace="http://www.w3school.org/xsd/ejemploEmpleado/v1/" schemaLocation="EmpleadoEjemplo.xsd"/>
+      <xsd:element ibmSchExtn:docRoot="true" name="OutputFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="faultCode" type="xsd:string"/>
+            <xsd:element name="faultMessage" type="xsd:string"/>
+            <xsd:element name="faultAction" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="faultList">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="errorCode"/>
+                  <xsd:element name="errorMessage"/>
+                  <xsd:element name="errorLevel"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="HeaderType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="messageUUID" type="xsd:string"/>
+            <xsd:element name="sendBy" type="xsd:string"/>
+            <xsd:element name="version" type="xsd:string"/>
+            <xsd:element name="fechaPeticion" type="xsd:dateTime"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>

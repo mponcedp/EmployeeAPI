@@ -1,0 +1,116 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Employee API",
+    "version" : "1.0.0",
+    "description" : "Employee API for Workshop ACE"
+  },
+  "paths" : {
+    "/employee/{employeeId}" : {
+      "get" : {
+        "operationId" : "getEmployee",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/DatosEmpleado"
+            }
+          },
+          "400" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/MensajeError"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve an  Employee",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "employeeId",
+          "in" : "path",
+          "type" : "integer"
+        }, {
+          "name" : "Fechahora",
+          "in" : "header",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "Nombre-Aplicacion",
+          "in" : "header",
+          "type" : "string",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "basePath" : "/ACEws/",
+  "definitions" : {
+    "DatosEmpleado" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "Nombre" : {
+          "type" : "string"
+        },
+        "ApellidoPaterno" : {
+          "type" : "string"
+        },
+        "ApellidoMaterno" : {
+          "type" : "string"
+        },
+        "FechaNacimiento" : {
+          "type" : "string"
+        },
+        "Edad" : {
+          "type" : "string"
+        },
+        "Direccion" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Direccion"
+          }
+        }
+      }
+    },
+    "Direccion" : {
+      "type" : "object",
+      "properties" : {
+        "Calle" : {
+          "type" : "string"
+        },
+        "NumeroExteriror" : {
+          "type" : "string"
+        },
+        "NumeroInterior" : {
+          "type" : "string"
+        },
+        "Colonia" : {
+          "type" : "string"
+        },
+        "Ciudad" : {
+          "type" : "string"
+        },
+        "Estado" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MensajeError" : {
+      "type" : "object",
+      "properties" : {
+        "EstatusProceso" : {
+          "type" : "string"
+        },
+        "IdTransaccion" : {
+          "type" : "string"
+        },
+        "Mensaje" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

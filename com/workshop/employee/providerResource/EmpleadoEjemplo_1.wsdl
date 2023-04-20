@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="EmpleadoEjemplo" targetNamespace="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:ejmemp="http://www.w3school.org/xsd/ejemploEmpleado/v1/" xmlns:empejm="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="EmpleadoEjemplo_1_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="EmpleadoEjemploSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    
+          <xsd:schema targetNamespace="http://www.3school.org/EmpleadoEjemplo/v1/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:import namespace="http://www.w3school.org/xsd/ejemploEmpleado/v1/" schemaLocation="EmpleadoEjemplo.xsd"/>
+<xsd:include schemaLocation="EmpleadoEjemplo_1_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="InputEmpleadoRequest">
+    <wsdl:part element="ejmemp:InputEmpleado" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="OutputEmpleadoResponse">
+    <wsdl:part element="ejmemp:OutputEmpleado" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="Header">
+    <wsdl:part element="empejm:HeaderType" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="OutputFault">
+    <wsdl:part element="empejm:OutputFault" name="OutputFault"/>
+  </wsdl:message>
+  <wsdl:portType name="EmpleadoEjemplo">
+    <wsdl:operation name="consultaEmpleado">
+      <wsdl:input message="empejm:InputEmpleadoRequest"/>
+      <wsdl:output message="empejm:OutputEmpleadoResponse"/>
+      <wsdl:fault message="empejm:OutputFault" name="outputFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmpleadoEjemploSOAP" type="empejm:EmpleadoEjemplo">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaEmpleado">
+      <soap:operation soapAction="http://www.3school.org/EmpleadoEjemplo/v1/consultaEmpleado"/>
+      <wsdl:input>
+        <soap:header message="empejm:Header" part="parameters" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="empejm:Header" part="parameters" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="outputFault">
+        <soap:fault name="outputFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmpleadoEjemplo">
+    <wsdl:port binding="empejm:EmpleadoEjemploSOAP" name="EmpleadoEjemploSOAP">
+      <soap:address location="http://localhost:7800/ws/EmpleadoEjemplo/v1/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

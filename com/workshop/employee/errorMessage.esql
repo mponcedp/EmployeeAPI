@@ -1,0 +1,28 @@
+BROKER SCHEMA com.workshop.employee
+DECLARE ns NAMESPACE 'http://www.3school.org/EmpleadoEjemplo/v1/';
+
+
+CREATE COMPUTE MODULE errorMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		IF InputRoot.SOAP.Body.ns:OutputFault.faultMessage IS NOT NULL THEN 
+			
+		SET OutputRoot.JSON.Data.EstatusProceso='workshop_err_704'; 
+		SET OutputRoot.JSON.Data.IdTransaccion=InputRoot.SOAP.Header.ns:HeaderType.messageUUID; 
+		SET OutputRoot.JSON.Data.Mensaje=InputRoot.SOAP.Body.ns:OutputFault.faultMessage; 
+		
+		ELSE
+			
+		SET OutputRoot.JSON.Data.EstatusProceso='workshop_exception'; 
+		SET OutputRoot.JSON.Data.IdTransaccion=InputRoot.SOAP.Header.ns:HeaderType.messageUUID; 
+		SET OutputRoot.JSON.Data.Mensaje=InputExceptionList; 
+		SET InputLocalEnvironment.Destination.HTTP.ReplyStatusCode ='400'; 
+		
+		END IF; 
+		
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

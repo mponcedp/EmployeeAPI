@@ -1,0 +1,34 @@
+BROKER SCHEMA com.workshop.employee
+
+
+CREATE COMPUTE MODULE outputEmployee
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		
+		SET OutputRoot.JSON.Data.id=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.ID_Empleado;
+		
+		SET OutputRoot.JSON.Data.status=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.ID_Empleado;
+		
+		SET OutputRoot.JSON.Data.Nombre=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.Nombre;
+		SET OutputRoot.JSON.Data.ApellidoPaterno=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.ApellidoPaterno;
+		SET OutputRoot.JSON.Data.ApellidoMaterno=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.ApellidoMaterno;
+		SET OutputRoot.JSON.Data.FechaNacimiento=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.FechaNacimiento;
+		SET OutputRoot.JSON.Data.Edad=InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DatosEmpleado.Edad;
+		
+		
+		CREATE FIELD OutputRoot.JSON.Data.Direccion IDENTITY (JSON.Array)Direccion;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].Calle = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.Calle;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].NumeroExteriror = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.NumeroExteriror;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].NumeroInterior = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.NumeroInterior;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].Colonia = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.Colonia;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].Ciudad = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.Ciudad;
+		SET OutputRoot.JSON.Data.Direccion.Item[1].Estado = InputRoot.SOAP.Body.nsempl:OutputEmpleado.Empleado.DireccioneEmpleado.Estado;
+		
+		
+		
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;
